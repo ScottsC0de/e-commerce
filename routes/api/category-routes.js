@@ -29,20 +29,13 @@ router.get('/:id', async (req, res) => {
 
     Category.findOne({
         attributes: ['id', 'category_name'],
-        where: {
-            id: req.params.id
-        },
+        where: { id: req.params.id },
         include: [{
             model: Product,
-            attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
+            attributes: ['id', 'product_name', 'price',
+                'stock', 'category_id']
         }]
     })
-
-    // const categoryData = await res.json(categoryData)
-    //     .catch(err => {
-    //         console.log(err);
-    //         res.status(404).json(err);
-    //     });
 
     try {
         const categoryData = await res.json(categoryData);
@@ -69,11 +62,11 @@ router.put('/:id', async (req, res) => {
     // update a category by its `id` value
 
     try {
-        const updateCategory = await Category.update(
+        const updatedCategory = await Category.update(
             { category_name: req.body.category_name },
             { where: { id: req.params.id } }
         );
-        res.status(200).json(updateCategory);
+        res.status(200).json(updatedCategory);
     } catch (err) {
         res.status(400).json(err);
     }
@@ -84,18 +77,13 @@ router.delete('/:id', async (req, res) => {
     // delete a category by its `id` value
 
     try {
-        const deleteCategory = await Category.destroy(
+        const deletedCategory = await Category.destroy(
             { where: { id: req.params.id } }
         );
-        res.status(200).json(deleteCategory);
+        res.status(200).json(deletedCategory);
     } catch (err) {
         res.status(400).json(err);
     }
 });
 
 module.exports = router;
-
-
-// .catch((err) => {
-//     res.json(err);
-//   });

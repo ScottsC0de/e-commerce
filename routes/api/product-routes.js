@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
         attributes: ['id', 'product_name',
             'price', 'stock', 'category_id'],
         include: [
-            { model: Category, attributes: ["id", "category_name"] },
+            { model: Category, attributes: ['id', 'category_name'] },
             { model: Tag, attributes: ["id", "tag_name"] }]
     })
 
@@ -33,9 +33,7 @@ router.get('/:id', async (req, res) => {
     Product.findOne({
         attributes: ["id", "product_name", "price",
             "stock", "category_id"],
-        where: {
-            id: req.params.id,
-        },
+        where: { id: req.params.id, },
         include: [
             {
                 model: Category,
@@ -47,6 +45,13 @@ router.get('/:id', async (req, res) => {
             },
         ],
     })
+
+    try {
+        const productData = await res.json(productData);
+        res.status(200).json(productData);
+    } catch (err) {
+        res.status(400).json(err);
+    };
 });
 
 // create new product
@@ -123,8 +128,17 @@ router.put('/:id', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
     // delete one product by its `id` value
+
+    try {
+        const deletedProduct = await Product.destroy(
+            { where: { id: req.params.id } }
+        );
+        res.status(200).json(deletedProduct);
+    } catch (err) {
+        res.status(400).json(err);
+    }
 });
 
 module.exports = router;
