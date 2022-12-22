@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
                 { model: Category, attributes: ['id', 'category_name'] },
                 { model: Tag, attributes: ["id", "tag_name"] }]
         })
-        res.json(categoryData);
+        res.json(productData);
     } catch (err) {
         res.status(400).json(err);
     };
@@ -27,25 +27,21 @@ router.get('/:id', async (req, res) => {
     // find a single product by its `id`
     // be sure to include its associated Category and Tag data
 
-    Product.findOne({
-        attributes: ["id", "product_name", "price",
-            "stock", "category_id"],
-        where: { id: req.params.id, },
-        include: [
-            {
+    try {
+        const productData = await Product.findOne({
+            attributes: ["id", "product_name", "price",
+                "stock", "category_id"],
+            where: { id: req.params.id },
+            include: [{
                 model: Category,
                 attributes: ["id", "category_name"],
             },
             {
                 model: Tag,
                 attributes: ["id", "tag_name"],
-            },
-        ],
-    })
-
-    try {
-        const productData = await res.json(productData);
-        res.status(200).json(productData);
+            },]
+        })
+        res.json(productData);
     } catch (err) {
         res.status(400).json(err);
     };
