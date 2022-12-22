@@ -9,37 +9,35 @@ router.get('/', async (req, res) => {
     // find all categories
     // be sure to include its associated Products
 
-    Category.findAll({
-        attributes: ['id', 'category_name'],
-        include: [{
-            model: Product,
-            attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
-        }]
-    })
-    const categoryData = await res.json(categoryData)
-        .catch(err => {
-            console.log(err);
-            res.status(404).json(err);
-        });
+    try {
+        const categoryData = await Category.findAll({ // query
+            attributes: ['id', 'category_name'],
+            include: [{
+                model: Product,
+                attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
+            }]
+        })
+        res.json(categoryData)
+    } catch (err) {
+        res.status(400).json(err)
+    };
 });
 
 router.get('/:id', async (req, res) => {
     // find one category by its `id` value
     // be sure to include its associated Products
 
-    Category.findOne({
-        attributes: ['id', 'category_name'],
-        where: { id: req.params.id },
-        include: [{
-            model: Product,
-            attributes: ['id', 'product_name', 'price',
-                'stock', 'category_id']
-        }]
-    })
-
     try {
-        const categoryData = await res.json(categoryData);
-        res.status(200).json(categoryData);
+        const categoryData = await Category.findOne({
+            attributes: ['id', 'category_name'],
+            where: { id: req.params.id },
+            include: [{
+                model: Product,
+                attributes: ['id', 'product_name', 'price',
+                    'stock', 'category_id']
+            }]
+        })
+        res.json(categoryData);
     } catch (err) {
         res.status(400).json(err);
     };
@@ -50,8 +48,8 @@ router.post('/', async (req, res) => {
     // create a new category
 
     try {
-        const newCategory = await Category.create(req.body); // category_name: req.body.category_name 
-        res.status(200).json(newCategory);
+        const newCategory = await Category.create(req.body);
+        res.status(201).json(newCategory);
     } catch (err) {
         res.status(400).json(err);
     };
@@ -66,7 +64,7 @@ router.put('/:id', async (req, res) => {
             { category_name: req.body.category_name },
             { where: { id: req.params.id } }
         );
-        res.status(200).json(updatedCategory);
+        res.json(updatedCategory);
     } catch (err) {
         res.status(400).json(err);
     };
@@ -80,7 +78,7 @@ router.delete('/:id', async (req, res) => {
         const deletedCategory = await Category.destroy(
             { where: { id: req.params.id } }
         );
-        res.status(200).json(deletedCategory);
+        res.json(deletedCategory);
     } catch (err) {
         res.status(400).json(err);
     };
