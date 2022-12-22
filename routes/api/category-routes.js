@@ -50,11 +50,11 @@ router.post('/', async (req, res) => {
     // create a new category
 
     try {
-        const newCategory = await Category.create(req.body);
+        const newCategory = await Category.create(req.body); // category_name: req.body.category_name 
         res.status(200).json(newCategory);
     } catch (err) {
         res.status(400).json(err);
-    }
+    };
 });
 
 // put = update data
@@ -69,7 +69,7 @@ router.put('/:id', async (req, res) => {
         res.status(200).json(updatedCategory);
     } catch (err) {
         res.status(400).json(err);
-    }
+    };
 });
 
 // CRUD
@@ -83,7 +83,7 @@ router.delete('/:id', async (req, res) => {
         res.status(200).json(deletedCategory);
     } catch (err) {
         res.status(400).json(err);
-    }
+    };
 });
 
 module.exports = router;
