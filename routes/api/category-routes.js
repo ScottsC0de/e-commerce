@@ -10,11 +10,12 @@ router.get('/', async (req, res) => {
     // be sure to include its associated Products
 
     try {
-        const categoryData = await Category.findAll({ // query
+        const categoryData = await Category.findAll({ // findAll() is a query method from sequelize
             attributes: ['id', 'category_name'],
             include: [{
                 model: Product,
-                attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
+                attributes: ['id', 'product_name',
+                    'price', 'stock', 'category_id']
             }]
         })
         res.json(categoryData)
@@ -33,8 +34,8 @@ router.get('/:id', async (req, res) => {
             where: { id: req.params.id },
             include: [{
                 model: Product,
-                attributes: ['id', 'product_name', 'price',
-                    'stock', 'category_id']
+                attributes: ['id', 'product_name',
+                    'price', 'stock', 'category_id']
             }]
         })
         res.json(categoryData);

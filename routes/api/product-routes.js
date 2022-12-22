@@ -32,14 +32,9 @@ router.get('/:id', async (req, res) => {
             attributes: ["id", "product_name", "price",
                 "stock", "category_id"],
             where: { id: req.params.id },
-            include: [{
-                model: Category,
-                attributes: ["id", "category_name"],
-            },
-            {
-                model: Tag,
-                attributes: ["id", "tag_name"],
-            },]
+            include: [
+                { model: Category, attributes: ["id", "category_name"], },
+                { model: Tag, attributes: ["id", "tag_name"] }]
         })
         res.json(productData);
     } catch (err) {
@@ -127,7 +122,7 @@ router.delete('/:id', async (req, res) => {
     try {
         const deletedProduct = await Product.destroy(
             { where: { id: req.params.id } }
-        );
+        )
         res.status(200).json(deletedProduct);
     } catch (err) {
         res.status(400).json(err);
