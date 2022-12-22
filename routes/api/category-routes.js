@@ -3,11 +3,12 @@ const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
 
-// get = read data
+// get = read data from a server's db
 // async await. does crud first, then assigns data to variable
 router.get('/', async (req, res) => {
     // find all categories
     // be sure to include its associated Products
+
     Category.findAll({
         attributes: ['id', 'category_name'],
         include: [{
@@ -25,11 +26,16 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     // find one category by its `id` value
     // be sure to include its associated Products
+
     Category.findOne({
+        attributes: ['id', 'category_name'],
         where: {
             id: req.params.id
         },
-        include: [{ model: Product }]
+        include: [{
+            model: Product,
+            attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
+        }]
     })
 
     // const categoryData = await res.json(categoryData)
@@ -46,7 +52,7 @@ router.get('/:id', async (req, res) => {
     };
 });
 
-// post = create data
+// post = create data in a server's db
 router.post('/', async (req, res) => {
     // create a new category
 
