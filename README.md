@@ -21,7 +21,7 @@ To use this application, you must download node onto your local machine. Please 
 ## <a id="usage-id"></a>Usage
 With node installed, you can now run node commands on JavaScript files. To use this app, you must be in its file from the CLI or an app that allows you to run CLI commands. For this app, we used VSCode’s Integrated Terminal. If you are using VSCode, right click on the server.js file and click ‘Open In Integrated Terminal’. Run a node server.js command to fire up our server. You should receive a console log message saying our server is servin' it up. This means we can access our database. First, we must initialize the database by right clicking the schema.sql file ands running mysql -u root -p, signing into mySQL. Then, run a source schema.sql command followed by a quit command. Then, run an npm run seed command. This will fill (or 'seed) our database with data. Head to Insomnia to run tests. Choose the method you'd like to try to the left of the input field and then type http://localhost:3001/api in the box. This is the name of our local host, or our server, connecting to our api routes. You can choose to add /categories /products/ or /tags at the end of the route to test each of the parts of the database. When using post, put, or delete methods, type the object in JSON format. Click on the link below for a demonstration!
 
-Full visual demonstration:
+Full visual demonstration: https://youtu.be/N2_ZViMa5r4
 
 ## <a id="questions-id"></a>Questions
 You can check out my repositories here on my GitHub account: 
