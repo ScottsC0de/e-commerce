@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     // be sure to include its associated Products
 
     try {
-        const categoryData = await Category.findAll({ // findAll() is a query method from sequelize
+        const categoryData = await Category.findAll({ // query method from sequelize
             attributes: ['id', 'category_name'],
             include: [{
                 model: Product,
