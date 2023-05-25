@@ -28,8 +28,6 @@ Full visual demonstration: https://youtu.be/rVezF1Oh9y8
 
 ## <a id="screenshots-id"></a>Screenshots
 
-<br>
-
 ![Creating e-commerce database code](img/e-commerce_pic_1.png)
 <br>
 
