@@ -8,6 +8,7 @@ A back-end app that uses the ORM Sequelize to communicate with a local database
 - [Description](#description-id)
 - [Installation](#installation-id)
 - [Usage](#usage-id)
+- [Screenshots](#screenshots-id)
 - [Questions](#questions-id)
 
 ## <a id="description-id"></a>Description
@@ -23,9 +24,20 @@ With node installed, you can now run node commands on JavaScript files. To use t
 
 Full visual demonstration: https://youtu.be/rVezF1Oh9y8
 
-## Screenshots
+<br>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rVezF1Oh9y8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+## <a id="screenshots-id"></a>Screenshots
+
+<br>
+
+![Creating e-commerce database code](img/e-commerce_pic_1.png)
+<br>
+
+![Seeding the database](img/ecommerce_pic_2.png)
+<br>
+
+![Testing routes in Insomnia for database](img/ecommerce_pic_3.png)
+<br>
 
 ## <a id="questions-id"></a>Questions
 You can check out my repositories here on my GitHub account: 
